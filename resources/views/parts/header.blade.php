@@ -6,16 +6,13 @@
 
     <ul class="navbar-nav ml-auto mr-5">
           <li class="nav-item ml-4">
-            <a class="nav-link text-white" id="post-link" href="/drafts/new">TOP</a>
+            <a class="btn btn-primary" href="/list" role="button">一覧</a>
           </li>
           <li class="nav-item ml-4">
-            <a class="nav-link text-white" id="post-link" href="/drafts/new">投稿</a>
+            <a class="btn btn-primary" href=/form role="button">投稿</a>
           </li>
           <li class="nav-item ml-4">
-            <a class="nav-link text-white" id="post-link" href="/drafts/new">編集</a>
-          </li>
-          <li class="nav-item ml-4">
-            <a class="nav-link text-white" id="post-link" href="/drafts/new">一覧</a>
+            <a class="btn btn-primary" href="/list" role="button">編集</a>
           </li>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               @csrf
