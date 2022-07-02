@@ -20,5 +20,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class,'index'])->name('home');
+
+Route::resource('users','UsersController',['only'=>['index','create','store']]);
+
+Route::get('/form', [App\Http\Controllers\UploadImageController::class, "show"])->name("upload_form");
+
+Route::post('/upload', [App\Http\Controllers\UploadImageController::class, "upload"])->name("upload_image");
+
+Route::get('/list', [App\Http\Controllers\ImageListController::class, "show"])->name("image_list");
