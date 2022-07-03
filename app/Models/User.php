@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // Cooking_postテーブルとのリレーション（主テーブル側）
+    public function CookingPost() { //1対多の「多」側なので複数形
+        return $this->hasMany('App\CookingPost');
+    }
 }
