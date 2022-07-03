@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class ImageListController extends Controller
 {
-    function show(){
+	/**
+     * 一覧画面
+     */
+    function index(){
 		//アップロードした画像を取得
 		$uploads = CookingPost::orderBy("id", "desc")->get();
 
@@ -15,4 +18,13 @@ class ImageListController extends Controller
 			"images" => $uploads,
 		]);
 	}
+	/**
+     * 詳細画面の表示
+     */
+	public function show($id)
+    {
+        $CookingPost = CookingPost::find($id);
+
+        return view('uploads.show', compact('CookingPost'));
+    }
 }

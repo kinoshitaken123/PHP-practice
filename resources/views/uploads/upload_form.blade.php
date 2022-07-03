@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<h1>投稿ページ</h1>
 	@if (count($errors) > 0)
 	<div class="alert alert-danger">
 		<ul>

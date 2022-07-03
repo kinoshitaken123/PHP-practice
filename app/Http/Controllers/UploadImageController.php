@@ -33,18 +33,3 @@ class UploadImageController extends Controller
 	return redirect("/list");
     }
 }
-
-
-// function upload(Request $request){
-// 	$path = $request->path->store('public');
-// 　　　　 // ②変数$imageのpathカラムに$pathのbasenameを代入
-// 	$image = [
-// 	'shop_name' => $request->shop_name,
-// 	'spot'  => $request->spot,
-// 	'path'  => basename($path)
-// 	];
-// 	\DB::table('images')->insert($image);
-
-// 	$images = \App\Image::all();
-// 	return view('user.home',compact('images'));
-// }

@@ -28,4 +28,6 @@ Route::get('/form', [App\Http\Controllers\UploadImageController::class, "show"])
 
 Route::post('/upload', [App\Http\Controllers\UploadImageController::class, "upload"])->name("upload_image");
 
-Route::get('/list', [App\Http\Controllers\ImageListController::class, "show"])->name("image_list");
+Route::get('/list', [App\Http\Controllers\ImageListController::class, "index"])->name("image_list");
+
+Route::get('/show/{id}', [App\Http\Controllers\ImageListController::class, "show"])->name("image_show");
