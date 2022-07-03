@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\UploadImage;
+use App\Models\CookingPost;
 
 use Illuminate\Http\Request;
 
@@ -9,10 +9,10 @@ class ImageListController extends Controller
 {
     function show(){
 		//アップロードした画像を取得
-		$uploads = UploadImage::orderBy("id", "desc")->get();
+		$uploads = CookingPost::orderBy("id", "desc")->get();
 
 		return view("uploads.image_list",[
-			"images" => $uploads
+			"images" => $uploads,
 		]);
 	}
 }
