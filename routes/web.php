@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-    return view('top'); 
+    return view('top');
 });
 
 Auth::routes();
@@ -31,3 +31,7 @@ Route::post('/upload', [App\Http\Controllers\UploadImageController::class, "uplo
 Route::get('/list', [App\Http\Controllers\ImageListController::class, "index"])->name("image_list");
 
 Route::get('/show/{id}', [App\Http\Controllers\ImageListController::class, "show"])->name("image_show");
+
+Route::get('/edit/{id}', [App\Http\Controllers\ImageListController::class, "edit"])->name("image_edit");
+
+Route::post('/update/{id}', [App\Http\Controllers\ImageListController::class, "update"])->name("image_update");

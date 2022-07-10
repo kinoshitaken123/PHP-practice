@@ -24,7 +24,38 @@ class ImageListController extends Controller
 	public function show($id)
     {
         $CookingPost = CookingPost::find($id);
-
+		// compactで指定してあげないと変数をビューに渡すことができない
         return view('uploads.show', compact('CookingPost'));
+    }
+	/**
+     * 編集画面の表示
+     */
+	public function edit($id)
+    {
+        $CookingPost = CookingPost::find($id);
+		// compactで指定してあげないと変数をビューに渡すことができない
+        return view('uploads.edit', compact('CookingPost'));
+    }
+	/**
+     * 更新実行
+     */
+	public function update(Request $request,$id)
+    {
+        $upload_image = $request->file('image');
+        if($upload_image) {
+            //アップロードされた画像を保存する
+            $path = $upload_image->store('uploads',"public");
+            //画像の保存に成功したらDBに記録する
+            if($path){
+                CookingPost::create([
+                    "product_name" => $request->product_name,
+                    "explanation" => $request->explanation,
+                    "user_id" => $path,
+                    "file_name" => $upload_image->getClientOriginalName(),
+                    "file_path" => $path
+                ]);
+            }
+        }
+        return redirect("/list");
     }
 }

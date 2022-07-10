@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>詳細確認</h1>
+<h1>詳細ページ</h1>
 <table class="table table-striped">
     <tbody>
         <tr>

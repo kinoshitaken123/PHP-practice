@@ -15,11 +15,11 @@
 		@csrf
 		<div class="form-group">
 			<td align="right"><b> 料理名</b></td>
-			<td><input type="text" name="product_name" size="30" maxlength="20"></td>
+			<input type="text" name="product_name" size="30" maxlength="20">
         </div>
 		<div class="form-group">
 			<td align="right"><b> 内容</b></td>
-			<td><input type="text" name="explanation" size="30" maxlength="20"></td>
+			<input type="text" name="explanation" size="30" maxlength="20">
         </div>
 		<input type="file" name="image" accept="image/png, image/jpeg">
 		<div class="mt-4">
