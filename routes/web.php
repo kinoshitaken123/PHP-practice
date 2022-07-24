@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +23,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-Route::resource('users','UsersController',['only'=>['index','create','store']]);
+// Route::resource('users','UsersController')->only(['index','create','store']);
 
-Route::get('/form', [App\Http\Controllers\UploadImageController::class, "show"])->name("upload_form");
+Route::resource('posts', 'App\Http\Controllers\ImageListController')
+    ->except(['create', 'destroy']);
 
-Route::post('/upload', [App\Http\Controllers\UploadImageController::class, "upload"])->name("upload_image");
-
-Route::get('/list', [App\Http\Controllers\ImageListController::class, "index"])->name("image_list");
-
-Route::get('/show/{id}', [App\Http\Controllers\ImageListController::class, "show"])->name("image_show");
-
-Route::get('/edit/{id}', [App\Http\Controllers\ImageListController::class, "edit"])->name("image_edit");
-
-Route::post('/update/{id}', [App\Http\Controllers\ImageListController::class, "update"])->name("image_update");
+Route::get('/search', 'App\Http\Controllers\SearchController@index');

@@ -11,7 +11,7 @@
 		</ul>
 	</div>
 	@endif
-	<form method="post" action="{{ route('upload_image') }}" enctype="multipart/form-data">
+	<form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
 		@csrf
 		<div class="form-group">
 			<td align="right"><b> 料理名</b></td>

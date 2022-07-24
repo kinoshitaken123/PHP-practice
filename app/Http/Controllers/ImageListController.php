@@ -1,61 +1,87 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\CookingPost;
-
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class ImageListController extends Controller
 {
+    public function __construct()
+    {
+        // ログインしていなかったらログインページに遷移する
+        $this->middleware('auth');
+    }
+
+    /**
+     * 投稿画面
+     */
+    public function store(Request $request)
+    {
+        // // 商品をデータベースに登録
+        $request->validate([
+            'image' => 'required|file|image|mimes:png,jpeg'
+        ]);
+
+        $upload_image = $request->file('image');
+        //アップロードされた画像を保存する
+        $path = $upload_image->store('uploads',"public");
+        //画像の保存に成功したらDBに記録する
+        Post::create([
+            "product_name" => $request->product_name,
+            "explanation" => $request->explanation,
+            "image" => $path,
+        ]);
+
+        return redirect()->route('posts.index');
+    }
+
 	/**
      * 一覧画面
      */
-    function index(){
-		//アップロードした画像を取得
-		$uploads = CookingPost::orderBy("id", "desc")->get();
+    public function index()
+    {
+        $posts = Post::all();
 
-		return view("uploads.image_list",[
-			"images" => $uploads,
-		]);
+        return view('posts.index', ['posts' => $posts]);
 	}
+
 	/**
      * 詳細画面の表示
      */
-	public function show($id)
+	public function show(Post $post)
     {
-        $CookingPost = CookingPost::find($id);
-		// compactで指定してあげないと変数をビューに渡すことができない
-        return view('uploads.show', compact('CookingPost'));
+        return view('posts.show', ['post'=>$post]);
     }
+
 	/**
      * 編集画面の表示
      */
-	public function edit($id)
+	public function edit(Post $post)
     {
-        $CookingPost = CookingPost::find($id);
-		// compactで指定してあげないと変数をビューに渡すことができない
-        return view('uploads.edit', compact('CookingPost'));
+        return view('posts.edit', ['post'=>$post]);
     }
+
 	/**
      * 更新実行
      */
-	public function update(Request $request,$id)
+    public function update(Request $request, Post $post)
     {
-        $upload_image = $request->file('image');
-        if($upload_image) {
-            //アップロードされた画像を保存する
-            $path = $upload_image->store('uploads',"public");
-            //画像の保存に成功したらDBに記録する
-            if($path){
-                CookingPost::create([
-                    "product_name" => $request->product_name,
-                    "explanation" => $request->explanation,
-                    "user_id" => $path,
-                    "file_name" => $upload_image->getClientOriginalName(),
-                    "file_path" => $path
-                ]);
-            }
+        // 画像ファイルインスタンス取得
+        $image = $request->file('image');
+        // 現在の画像へのパスをセット
+        $path = $post->image;
+        if (isset($image)) {
+            // 現在の画像ファイルの削除
+            \Storage::disk('public')->delete($path);
+            // 選択された画像ファイルを保存してパスをセット
+            $path = $image->store('posts', 'public');
         }
-        return redirect("/list");
+        // データベースを更新
+        $post->update([
+            "product_name" => $request->product_name,
+            "explanation" => $request->explanation,
+            "image" => $path,
+        ]);
+        return redirect()->route('posts.index', $post);
     }
 }
