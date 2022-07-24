@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title>Document</title>
-	</head>
+<h1>TOPページ</h1>
 	<body>
 		@foreach($images as $image)
 		<div style="width: 18rem; float:left; margin: 16px;">
@@ -16,5 +11,4 @@
 		</div>
 		@endforeach
 	</body>
-</html>
 @endsection

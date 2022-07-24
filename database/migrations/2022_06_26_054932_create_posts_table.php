@@ -14,11 +14,12 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');  #string型のtitleカラムを追加
-            $table->text('body');
-            $table->text('image');
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('product_name');
+            $table->string('explanation');
+            $table->string("image");
+            $table->datetime('created_at');
+            $table->datetime('updated_at');
         });
     }
 
