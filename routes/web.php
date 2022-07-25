@@ -23,9 +23,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-// Route::resource('users','UsersController')->only(['index','create','store']);
+Route::resource('users','UsersController')->only(['index','create','store']);
 
 Route::resource('posts', 'App\Http\Controllers\ImageListController')
     ->except(['create', 'destroy']);
 
 Route::get('/search', 'App\Http\Controllers\SearchController@index')->name('search.index');
+
