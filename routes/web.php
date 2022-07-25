@@ -28,4 +28,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class,'index'])->name(
 Route::resource('posts', 'App\Http\Controllers\ImageListController')
     ->except(['create', 'destroy']);
 
-Route::get('/search', 'App\Http\Controllers\SearchController@index');
+Route::get('/search', 'App\Http\Controllers\SearchController@index')->name('search.index');
