@@ -38,9 +38,19 @@ class ImageListController extends Controller
 	/**
      * 一覧画面
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
+        //検索用クエリ発行
+        $query = Post::query();
+        //パラメータの取得
+        $value = $request->input('search');
+
+        if (!empty($value)) {
+            $query->where('product_name', 'like', '%' . $value . '%')
+                ->orWhere('explanation', 'like', '%' . $value . '%');
+        }
+
+        $posts = $query->orderBy('created_at', 'desc')->paginate(10);
 
         return view('posts.index', ['posts' => $posts]);
 	}

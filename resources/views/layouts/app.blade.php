@@ -57,8 +57,9 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-                                <form class="form-inline my-2 my-lg-0 ml-2">
-                                    <input type="search" class="form-control mr-sm-2" placeholder="キーワードを入力" aria-label="検索...">
+                                <form class="form-inline my-2 my-lg-0 ml-2" action="{{ route('posts.index') }}">
+                                    <input type="search" class="form-control mr-sm-2" name="search"  value="{{request('search')}}" placeholder="キーワードを入力" aria-label="検索...">
+                                    <input type="submit" value="検索" class="btn btn-info">
                                 </form>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
