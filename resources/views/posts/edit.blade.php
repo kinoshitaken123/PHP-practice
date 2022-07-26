@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <h1>編集ページ</h1>
-            <form  method="post" action="{{ route('posts.update', $post) }}" class="form-horizontal">
+            <form  method="post" action="{{ route('posts.update', $post) }}" class="form-horizontal" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="form-group row">
@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="form-group">
-			    <input type="file" name="image">
-		    </div>
+                <input type="file" name="image">
+            </div>
             <div class="form-group row">
                 <label class="col-md-2" for="title">内容</label>
                 <div class="col-md-10">

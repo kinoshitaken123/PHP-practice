@@ -8,7 +8,7 @@
   <body>
     <h1>商品一覧・入力</h1>
     <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
-      <form class="form-inline my-2 my-lg-0 ml-2" action="{{ route('posts.index') }}">
+      <form class="form-inline my-2 my-lg-0 ml-2" action="{{ route('search.index') }}">
         <input type="search" class="form-control mr-sm-2" name="search"  value="{{request('search')}}" placeholder="キーワードを入力" aria-label="検索...">
         <input type="submit" value="検索" class="btn btn-info">
       </form>
@@ -29,7 +29,7 @@
             <a class="btn btn-secondary btn-sm" href="/posts" role="button">キャンセル</a>
             <button type="submit" class="btn btn-primary btn-sm">投稿</button>
         </div>
-	  </form>
+    </form>
     {{-- 商品データ・画像表示 --}}
     @foreach ($posts as $post)
     <div style="width: 18rem; float:left; margin: 16px;">
