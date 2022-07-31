@@ -6,13 +6,13 @@
     @csrf
     <div class="form-group">
       <td align="right"><b> 料理名</b></td>
-      <input type="text" name="product_name" size="30" maxlength="20">
+      <input type="text" name="product_name" size="30" maxlength="20" required>
     </div>
     <div class="form-group">
       <td align="right"><b> 内容</b></td>
-      <input type="text" name="explanation" size="30" maxlength="20">
+      <input type="text" name="explanation" size="30" maxlength="20" required>
     </div>
-    <input type="file" name="image" accept="image/png, image/jpeg">
+    <input type="file" name="image" accept="image/png, image/jpeg" required>
       <div class="mt-4">
           <a class="btn btn-secondary btn-sm" href="/posts" role="button">キャンセル</a>
           <button type="submit" class="btn btn-primary btn-sm">投稿</button>
