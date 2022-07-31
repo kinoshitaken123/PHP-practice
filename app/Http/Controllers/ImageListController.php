@@ -13,11 +13,11 @@ class ImageListController extends Controller
     }
 
     /**
-     * 投稿画面
+     * 画面投稿
      */
     public function store(Request $request)
     {
-        // // 商品をデータベースに登録
+        // 商品をデータベースに登録
         $request->validate([
             'image' => 'required|file|image|mimes:png,jpeg'
         ]);
