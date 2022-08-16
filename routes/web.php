@@ -28,5 +28,8 @@ Route::resource('users','UsersController')->only(['index','create','store']);
 Route::resource('posts', 'App\Http\Controllers\ImageListController')
     ->except(['create', 'destroy']);
 
+//検索機能
 Route::get('/search', 'App\Http\Controllers\SearchController@index')->name('search.index');
 
+//コメント機能
+Route::post('posts/{comment_id}/comments','App\Http\Controllers\CommentsController@store');
