@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ImageListController extends Controller
 {
@@ -21,7 +22,7 @@ class ImageListController extends Controller
         $request->validate([
             'image' => 'required|file|image|mimes:png,jpeg'
         ]);
-
+        $user = Auth::user();
         $upload_image = $request->file('image');
         //アップロードされた画像を保存する
         $path = $upload_image->store('uploads',"public");
@@ -29,9 +30,9 @@ class ImageListController extends Controller
         Post::create([
             "product_name" => $request->product_name,
             "explanation" => $request->explanation,
+            "user_id" => $user->id,
             "image" => $path,
         ]);
-
         return redirect()->route('posts.index');
     }
 
